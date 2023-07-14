@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
+        publish = true,
         plugin = {"json:target/cucumber.json",
                 "html:target/default-html-reports.html",
                 "rerun:target/rerun.txt"
@@ -14,7 +15,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/eurotech/step_definitions",
         dryRun = false,
-        tags = "@emarket"
+        tags = "@orderStatus"
 
 )
 public class CukesRunner {
