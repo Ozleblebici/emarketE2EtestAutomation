@@ -26,6 +26,10 @@ public class Driver {
                     ChromeOptions opt=new ChromeOptions();
                     opt.addArguments("--remote-allow-origins=*");
                     driver=new ChromeDriver(opt);
+                    // TODO manual driver setup:
+                    // dowload lates or related chrome exe file from https://googlechromelabs.github.io/chrome-for-testing/ then put in project, get path
+                    //System.setProperty("webdriver.chrome.driver", "UPDATA THIS PATH with your exe file path !!/drivers/chromedriver");
+                    // driver = new ChromeDriver(); 
                     break;
                 case "chrome-headless":
                     WebDriverManager.chromedriver().setup();
