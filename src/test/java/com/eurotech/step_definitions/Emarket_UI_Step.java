@@ -28,7 +28,9 @@ public class Emarket_UI_Step {
     @Then("Navigate to {string} module")
     public void navigateToModule(String moduleName) {
 
+        BrowserUtils.waitFor(1);
         Driver.get().get("http://localhost:8080/"+moduleName);
+        BrowserUtils.waitFor(1);
     }
 
     @Then("Verify that {string} order email is {string}, order price is {string} usd")

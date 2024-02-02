@@ -10,7 +10,7 @@ Feature: eMarket test
     Then Verify that "1" order email is "facetoface@gmail.com", order price is "404" usd
 
 
-#    DB ile VERIFICATION
+#  VERIFICATION with DB
    @dbOrderEmailVerify @db
   Scenario: Verify email address for given order id with DB
     Given User navigate to login page
