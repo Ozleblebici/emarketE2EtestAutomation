@@ -2,15 +2,16 @@
 Feature: eMarket test
 
 #  UI BASE VERIFICCATION
+  @UIorderVerify
   Scenario: Verify email address for given order id with user input
     Given User navigate to login page
     When Login as admin
     And Navigate to "admin/orders" module
-    Then Verify that "1" order email is "talha@test.com", order price is "1115" usd
+    Then Verify that "1" order email is "facetoface@gmail.com", order price is "404" usd
 
 
 #    DB ile VERIFICATION
-  @db @dbOrderEmailVerify
+   @dbOrderEmailVerify @db
   Scenario: Verify email address for given order id with DB
     Given User navigate to login page
     When Login as admin

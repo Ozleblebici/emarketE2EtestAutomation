@@ -1,6 +1,6 @@
 package com.eurotech.utilities;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,7 +12,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class Driver {
-
     private Driver() {}
 
     private static WebDriver driver;
@@ -21,40 +20,40 @@ public class Driver {
         if (driver == null) {
             String browser = ConfigurationReader.get("browser");
             switch (browser) {
-                case "chrome":
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                case "chrome": //Chrome - chrome - cHROME
+                  // selenium-java --> before version  4.6.0
+                    driver = new ChromeDriver(); // Polymorphism
                     break;
                 case "chrome-headless":
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver(new ChromeOptions().setHeadless(true));
+
+                    driver = new ChromeDriver(new ChromeOptions());
                     break;
                 case "firefox":
-                    WebDriverManager.firefoxdriver().setup();
+
                     driver = new FirefoxDriver();
                     break;
                 case "firefox-headless":
-                    WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver(new FirefoxOptions().setHeadless(true));
+
+                    driver = new FirefoxDriver(new FirefoxOptions());
                     break;
                 case "ie":
                     if (!System.getProperty("os.name").toLowerCase().contains("windows"))
                         throw new WebDriverException("Your OS doesn't support Internet Explorer");
-                    WebDriverManager.iedriver().setup();
+
                     driver = new InternetExplorerDriver();
                     break;
 
                 case "edge":
                     if (!System.getProperty("os.name").toLowerCase().contains("windows"))
                         throw new WebDriverException("Your OS doesn't support Edge");
-                    WebDriverManager.edgedriver().setup();
+
                     driver = new EdgeDriver();
                     break;
 
                 case "safari":
                     if (!System.getProperty("os.name").toLowerCase().contains("mac"))
                         throw new WebDriverException("Your OS doesn't support Safari");
-                    WebDriverManager.getInstance(SafariDriver.class).setup();
+
                     driver = new SafariDriver();
                     break;
             }
@@ -69,5 +68,5 @@ public class Driver {
             driver = null;
         }
     }
-}
 
+}

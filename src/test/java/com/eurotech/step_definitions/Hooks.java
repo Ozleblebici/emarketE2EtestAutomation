@@ -8,40 +8,33 @@ import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public class Hooks {
 
-
-    @Before //JAVA
-    public void setUp(){
-        System.out.println("\tThis is coming from Before method");
-        Driver.get().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        Driver.get().manage().window().maximize();
+    @Before
+    public void setup() {
+        Driver.get().manage().window().maximize();    //optional
+        Driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(9));
     }
-    @After //JAVA
-    public void tearDown(Scenario scenario){
+
+    @After
+    public void tearDown(Scenario scenario) {
         if(scenario.isFailed()){
-           final byte[] screenshot = ((TakesScreenshot) Driver.get()).getScreenshotAs(OutputType.BYTES);
-           scenario.attach(screenshot,"image/png","screenshot");
+            final byte[] screenshot = ((TakesScreenshot) Driver.get()).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot,"image/png","screenshot");
         }
         Driver.closeDriver();
     }
 
     @Before("@db")
-    public void setUpDB(){
-        System.out.println("\tConnection DB");
+    public void setupDB() {
         DBUtils.createConnection();
+
     }
-
-
-
-
     @After("@db")
-    public void tearDownDB(){
-        System.out.println("\tDisconnection DB");
+    public void tearDownDB() {
         DBUtils.destroy();
+
     }
-
-
 }
